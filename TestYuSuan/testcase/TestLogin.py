@@ -5,9 +5,9 @@ import requests
 from TestYuSuan.untils.Utils import Utils
 from TestYuSuan.api.GetToken import GetToken
 class TestLogin:
-    Token='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjM1NTIwMjYsInVzZXJuYW1lIjoiMTM3NTUwNTM1NzUifQ.EihEVUS5KZ0a_4UI16X1JwopTxbI-zrKDUMP7RBPVi0'
+    Token='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjM2NjQyODksInVzZXJuYW1lIjoiMTM3NTUwNTM1NzUifQ.wa56OEykK4H599pBVvSjVJfAgN1TpOsAAEe5ei7wkiQ'
     ip='https://vue-test.mophone.net'
-    t='1663550952'
+    t='1663662514'
     def test_login(self):
         gettoken=GetToken()
         gettoken.get_token()
@@ -19,7 +19,8 @@ class TestLogin:
         params={'_t': self.t}
         headers={'X-Access-Token':self.Token}
         req=requests.get(url=url,params=params,headers=headers)
-        # printer.pprint(req.json())
+        print(jsonpath.jsonpath(req.json(), "$..result.allAuth[?(@.describe=='添加按钮')].status"))
+        pprint(req.json())
 
     def test_YsList(self):
         path='/idea-budget/budget/budget/list'
